@@ -8,6 +8,11 @@
 </head>
 <body>
     <h1 th:text="${listofPersons}"></h1>
+
+    <br>
+    <a th:href="@{/persons/add}">Add New Person</a>
+    <br>
+
     <table border="1">
         <tr>
             <th>Id</th>
@@ -28,7 +33,14 @@
                     <input type="submit" value="Update">
                 </form>
             </td>
-            <td></td>
+            <td>
+                <form th:object="${person}" th:action="@{/persons/deletePerson}" method="POST">
+                    <input type="hidden" name="id" th:value="${person.id}" />
+                    <input type="hidden" name="firstName" th:value="${person.firstName}" />
+                    <input type="hidden" name="lastName" th:value="${person.lastName}" />
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
         </tr>
     </table>
 </body>
